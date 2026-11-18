@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuela Horizonte · Secundaria</title>
+
+<!-- 1) Estilos del chat de n8n -->
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#14284b; --teal:#0f8b8d; --sun:#f2a541; --ink:#1d2433; --muted:#5b6475; --bg:#f6f8fb;
+    /* Colores del chat para que combine con la página */
+    --chat--color--primary: var(--teal);
+    --chat--color--primary-shade-50: #0c7779;
+    --chat--color--primary--shade-100: #0a6567;
+    --chat--color--secondary: var(--navy);
+    --chat--color-secondary-shade-50: #0f203d;
+    --chat--header--background: var(--navy);
+    --chat--toggle--background: var(--teal);
+    --chat--toggle--hover--background: #0c7779;
+    --chat--toggle--active--background: #0a6567;
+    --chat--message--user--background: var(--teal);
+    --chat--window--width: 380px;
+    --chat--header--padding: 18px 22px;
+    --chat--heading--font-size: 22px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e6eaf0;z-index:5}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy);font-size:19px;text-decoration:none}
+  .logo span.mark{width:34px;height:34px;border-radius:9px;background:var(--navy);display:grid;place-items:center}
+  .logo span.mark::after{content:"";width:16px;height:8px;border-radius:16px 16px 0 0;background:var(--sun);margin-top:6px}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;color:var(--muted)}
+  nav ul a{text-decoration:none} nav ul a:hover{color:var(--navy)}
+  .btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px}
+  .btn-primary{background:var(--sun);color:var(--navy)} .btn-ghost{border:1.5px solid rgba(255,255,255,.6);color:#fff}
+  .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;right:-120px;bottom:-260px;width:620px;height:620px;border-radius:50%;background:var(--teal);opacity:.55}
+  .hero::after{content:"";position:absolute;right:120px;bottom:-140px;width:300px;height:300px;border-radius:50%;background:var(--sun);opacity:.9}
+  .hero .wrap{position:relative;z-index:1;padding-top:84px;padding-bottom:96px}
+  .tag{display:inline-block;background:rgba(255,255,255,.12);padding:6px 14px;border-radius:999px;font-size:13px;letter-spacing:.3px}
+  .hero h1{font-size:46px;line-height:1.12;margin:18px 0 14px;max-width:620px}
+  .hero p{font-size:18px;max-width:540px;color:#d7e0ee;margin:0 0 28px}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+  section{padding:72px 0}
+  h2{font-size:30px;color:var(--navy);margin:0 0 8px} .lead{color:var(--muted);margin:0 0 36px;max-width:620px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:var(--bg);border-radius:16px;padding:26px}
+  .card .ico{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;font-size:22px;margin-bottom:14px;box-shadow:0 1px 0 #e6eaf0}
+  .card h3{margin:0 0 6px;color:var(--navy);font-size:18px} .card p{margin:0;color:var(--muted);font-size:15px}
+  .band{background:var(--bg)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+  .step{background:#fff;border-radius:14px;padding:22px;border:1px solid #e6eaf0}
+  .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;font-size:14px;margin-bottom:12px}
+  .step b{display:block;color:var(--navy);margin-bottom:4px}
+  .step span{color:var(--muted);font-size:14px}
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .price{border:1px solid #e6eaf0;border-radius:16px;padding:26px}
+  .price .n{font-size:34px;font-weight:700;color:var(--navy)} .price small{color:var(--muted)}
+  .note{margin-top:18px;background:#fff6e8;border-radius:12px;padding:14px 18px;color:#7a4b06;font-size:15px}
+  .contact{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start}
+  .info p{margin:0 0 10px}
+  .map{height:220px;border-radius:16px;background:linear-gradient(135deg,#dfe7f2,#eef3f9);display:grid;place-items:center;color:var(--muted);font-size:14px}
+  footer{background:var(--navy);color:#b9c6da;font-size:14px;padding:26px 0}
+  @media (max-width:860px){.cards,.steps,.prices,.contact{grid-template-columns:1fr} nav ul{display:none} .hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><nav>
+    <a class="logo" href="#"><span class="mark"></span>Escuela Horizonte</a>
+    <ul><li><a href="#oferta">Oferta</a></li><li><a href="#inscripciones">Inscripciones</a></li><li><a href="#costos">Costos</a></li><li><a href="#contacto">Contacto</a></li></ul>
+    <a class="btn btn-primary" href="#inscripciones">Inscríbete</a>
+  </nav></div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">Ciclo escolar 2027–2028 · Inscripciones en junio</span>
+    <h1>Una secundaria donde cada alumno encuentra su horizonte</h1>
+    <p>Grupos pequeños, talleres de robótica, inglés y artes, y un equipo docente que acompaña de cerca a cada estudiante.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#inscripciones">Conoce los requisitos</a>
+      <a class="btn btn-ghost" href="#contacto">Agenda una visita</a>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="wrap">
+    <h2>Oferta educativa</h2>
+    <p class="lead">Secundaria de 1.º a 3.º grado, de lunes a viernes de 7:00 a 14:00 h, con grupos de máximo 30 alumnos.</p>
+    <div class="cards">
+      <div class="card"><div class="ico">🤖</div><h3>Robótica</h3><p>Proyectos por equipos desde primer grado, con competencias internas cada semestre.</p></div>
+      <div class="card"><div class="ico">🌎</div><h3>Inglés diario</h3><p>Cinco horas a la semana, con preparación para certificación al terminar tercero.</p></div>
+      <div class="card"><div class="ico">🎨</div><h3>Artes</h3><p>Música, teatro y artes visuales, con muestra abierta a las familias al cierre del ciclo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="inscripciones" class="band">
+  <div class="wrap">
+    <h2>Inscripciones</h2>
+    <p class="lead">Del 1 al 30 de junio en control escolar, de 8:00 a 16:00 h.</p>
+    <div class="steps">
+      <div class="step"><b>Reúne tus papeles</b><span>Acta de nacimiento, CURP, certificado de primaria y comprobante de domicilio.</span></div>
+      <div class="step"><b>Trae 2 fotos</b><span>Tamaño infantil, a color o blanco y negro.</span></div>
+      <div class="step"><b>Paga la inscripción</b><span>$1,800 en control escolar o por transferencia.</span></div>
+      <div class="step"><b>Recibe tu lista</b><span>Útiles, uniforme y fecha de la junta de bienvenida.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="costos">
+  <div class="wrap">
+    <h2>Costos y becas</h2>
+    <p class="lead">Precios del ciclo escolar vigente.</p>
+    <div class="prices">
+      <div class="price"><small>Inscripción anual</small><div class="n">$1,800</div><small>Un solo pago al inscribirte</small></div>
+      <div class="price"><small>Colegiatura mensual</small><div class="n">$2,400</div><small>10 meses · 10 % de descuento antes del día 5</small></div>
+    </div>
+    <div class="note">Becas de 25 % y 50 % por promedio mayor a 9.0 o por situación económica. Se solicitan en agosto.</div>
+  </div>
+</section>
+
+<section id="contacto" class="band">
+  <div class="wrap contact">
+    <div class="info">
+      <h2>Contacto</h2>
+      <p class="lead" style="margin-bottom:18px">¿Dudas? Escríbele a nuestro asistente en la esquina inferior derecha o comunícate con nosotros.</p>
+      <p><b>Dirección:</b> Av. Juárez 120, Col. Centro, a dos cuadras del metro Hidalgo</p>
+      <p><b>Teléfono:</b> 55 1234 5678 · <b>WhatsApp:</b> 55 8765 4321</p>
+      <p><b>Correo:</b> informes@escuelahorizonte.edu.mx</p>
+    </div>
+    <div class="map">Aquí puedes insertar un mapa</div>
+  </div>
+</section>
+
+<footer><div class="wrap">© Escuela Horizonte · Sitio de práctica (datos ficticios) · Introduction to Agentic AI · INFOTEC</div></footer>
+
+<!-- 2) El chat de n8n. Pega en webhookUrl la Chat URL de tu nodo When chat message received -->
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://escuela-horizonte-t.tailbac34a.ts.net/webhook/a6a52ae7-c68a-4306-97d3-5edad06137f8/chat',
+    initialMessages: [
+      '¡Hola! Soy el asistente de la Escuela Horizonte.',
+      'Pregúntame por inscripciones, colegiaturas, horarios o becas. Si eres parte del personal, ten a la mano tu código de empleado.'
+    ],
+    i18n: {
+      en: {
+        title: 'Asistente Horizonte',
+        subtitle: 'Te respondemos al momento, las 24 horas',
+        footer: '',
+        getStarted: 'Nueva conversación',
+        inputPlaceholder: 'Escribe tu pregunta...'
+      }
+    }
+  });
+</script>
+</body>
+</html>
