@@ -1,1 +1,0 @@
-# escuela-horizonte-t
